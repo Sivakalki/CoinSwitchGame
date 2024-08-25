@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Button, Input, Alert } from 'antd';
 import { ethers } from 'ethers';
-
 interface CoinFlipProps {
     contract: ethers.Contract | null;
     walletAddress: string;
@@ -33,7 +32,7 @@ const CoinFlip: React.FC<CoinFlipProps> = ({ contract, walletAddress, updateBala
                 const tx = await contract.flipCoin(heads, { value: betAmountBigNumber.toString() });
                 const receipt = await tx.wait();
 
-                const event = receipt.events?.find(event => event.event === 'Flipped');
+                const event = receipt.events?.find((event:any) => event.event === 'Flipped');
                 if (event) {
                     const [user, result] = event.args as [string, boolean];
                     if (user.toLowerCase() === walletAddress.toLowerCase()) {
@@ -61,7 +60,7 @@ const CoinFlip: React.FC<CoinFlipProps> = ({ contract, walletAddress, updateBala
             <Button type="primary" onClick={() => flipCoin(true)} style={{ marginRight: '1rem' }}>
                 Flip Heads
             </Button>
-            <Button type="danger" onClick={() => flipCoin(false)}>
+            <Button type="dashed" onClick={() => flipCoin(false)}>
                 Flip Tails
             </Button>
             {result && <Alert message={result} type="info" showIcon style={{ marginTop: '1rem' }} />}
