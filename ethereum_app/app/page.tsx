@@ -4,7 +4,14 @@ import { Button, Typography } from 'antd';
 import { ethers } from 'ethers';
 import CoinFlip from './coinflip';
 
-const { Title } = Typography;
+import { MetaMaskInpageProvider } from '@metamask/providers';
+
+declare global {
+  interface Window {
+    ethereum: MetaMaskInpageProvider;
+  }
+}
+// const { Title } = Typography;
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState<string>("");
