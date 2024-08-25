@@ -1,8 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Button, Typography } from 'antd';
-import { Web3Provider } from '@ethersproject/providers'; 
-import { Contract } from 'ethers';
 import { ethers } from 'ethers';
 import CoinFlip from './coinflip';
 
